@@ -31,3 +31,31 @@ dependencies {
     implementation 'com.lwjlol.privacyhook:core:0.0.1'
 }
 ```
+
+
+
+
+设置 isUserAgreed 函数，获取当前是否同意：
+```kotlin
+// 设置 isUserAgreed 
+PrivacyHooker.isUserAgreed = {
+            agree
+        }
+
+
+val dialog = AlertDialog.Builder(this)
+    .setPositiveButton(
+        "同意",
+        DialogInterface.OnClickListener { dialog, which ->
+            agree = true
+        },
+    )
+    .setNegativeButton(
+        "不同意",
+        DialogInterface.OnClickListener { dialog, which ->
+            agree = false
+        },
+    )
+    .setMessage("是否同意隐私协议？")
+dialog.show()
+```
