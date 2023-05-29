@@ -28,6 +28,12 @@ buildscript {
 
 app 的 build.gradle
 ```gradle
+plugins {
+    // 添加 booster 插件
+    id 'com.didiglobal.booster'
+}
+
+
 dependencies {
     implementation 'com.lwjlol.privacyhook:core:0.0.1'
 }
