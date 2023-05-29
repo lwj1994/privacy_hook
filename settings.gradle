@@ -14,5 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "android_privacy_hook"
 include ':app'
-include ':privacy_hook'
+include ':core'
 include ':transform'

@@ -1,0 +1,82 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+// 设置group和版本名称
+group = LIB_GROUP
+version = LIB_VERSION
+
+// 如何配置，参考文档：https://developer.android.com/studio/publish-library
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.source
+}
+
+def LIB_ARTIFACT = project.name
+println("LIB_ARTIFACT = $LIB_ARTIFACT")
+
+publishing {
+    publications {
+        // release：自定义发布产物名称
+        release(MavenPublication) {
+            artifactId LIB_ARTIFACT
+            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+            artifact androidSourcesJar
+
+            pom {
+                name = LIB_ARTIFACT
+                description = LIB_DES
+                url = LIB_URL
+                licenses {
+                    license {
+                        name = LICENSE_NAME
+                        url = LICENSE_URL
+                        distribution = LICENSE_DIST
+                    }
+                }
+                developers {
+                    developer {
+                        name = DEVELOPER_NAME
+                        email = DEVELOPER_EMAIL
+                    }
+                }
+                scm {
+                    url = SCM_URL
+                    connection = 'scm:git:github.com/lwj1994/privacy_hook.git'
+                    developerConnection = 'scm:git:ssh://github.com/lwj1994/privacy_hook.git'
+                }
+                withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+
+                    project.configurations.implementation.allDependencies.each {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            // change URLs to point to your repos, e.g. http://my.org/repo
+            def releasesRepoUrl = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            def snapshotsRepoUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+            def mavenUrl = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            url = mavenUrl
+
+            println("publish to mavenUrl=$mavenUrl")
+            // 校验不支持本地文件目录
+            if (mavenUrl.startsWith("https")) {
+                credentials {
+                    username = ossrhUsername
+                    password = ossrhPassword
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.release
+}

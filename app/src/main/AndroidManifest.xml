@@ -12,6 +12,19 @@
     android:icon="@mipmap/ic_launcher"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:theme="@style/Theme.Android_privacy_hook" />
+    android:theme="@style/Theme.Android_privacy_hook" >
+            <activity
+                android:name=".Main"
+                android:exported="true"
+                android:label="@string/app_name"
+                >
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
 
-    </manifest>
+            </activity>
+
+    </application>
+
+</manifest>

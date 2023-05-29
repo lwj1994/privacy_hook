@@ -1,9 +1,11 @@
 apply from: "$rootDir/transform/common.gradle"
+apply from: "${rootProject.projectDir}/plugin_maven_publish_jar.gradle"
+
 
 dependencies {
     kapt "com.google.auto.service:auto-service:1.0"
     api "com.didiglobal.booster:booster-api:4.16.2"
     api "com.didiglobal.booster:booster-transform-asm:4.16.2"
-    compileOnly "com.android.tools.build:gradle:8.0.2"
-    testCompileOnly "com.android.tools.build:gradle:8.0.2"
+    compileOnly "com.android.tools.build:gradle:7.4.2"
+    testCompileOnly "com.android.tools.build:gradle:7.4.2"
 }
