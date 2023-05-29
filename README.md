@@ -66,3 +66,13 @@ val dialog = AlertDialog.Builder(this)
     .setMessage("是否同意隐私协议？")
 dialog.show()
 ```
+
+
+如果你使用 flutter ，并且用 `shared_preferences` 进行键值对存储，可以这么写：
+```kotlin
+val sp = getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+PrivacyHooker.isUserAgreed = {
+  // agreement 是 flutter 侧定义的 key
+  sp.getBoolean("flutter.agreement", false)
+}
+```
