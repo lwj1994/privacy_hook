@@ -1,4 +1,5 @@
 ## android_privacy_hook
+![](https://maven-badges.herokuapp.com/maven-central/com.lwjlol.privacyhook/core/badge.svg?style=for-the-badge)
 
 基于 Booster 对隐私 api 进行 hook，用户同意之前返回空值。同意之后才调用原有的 api。
 
