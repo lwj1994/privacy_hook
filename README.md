@@ -70,9 +70,9 @@ dialog.show()
 
 如果你使用 flutter ，并且用 `shared_preferences` 进行键值对存储，可以这么写：
 ```kotlin
-val sp = getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+val sp = getSharedPreferences("FlutterSharedPreferences", Context.MODE_PRIVATE)
 PrivacyHooker.isUserAgreed = {
-  // agreement 是 flutter 侧定义的 key
+  // agreement 是 flutter 侧定义的 key, flutter 的 key 都是以 flutter. 为前缀命名的
   sp.getBoolean("flutter.agreement", false)
 }
 ```
