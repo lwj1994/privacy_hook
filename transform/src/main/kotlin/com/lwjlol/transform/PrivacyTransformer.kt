@@ -159,6 +159,20 @@ private val privacyMetaList = listOf(
         hookOwner = hookOwner,
         hookDesc = "(Landroid/content/pm/PackageManager;Ljava/lang/String;I)Landroid/content/pm/PackageInfo;",
     ),
+    MetaData(
+        owner = "android/telephony/TelephonyManager",
+        name = "getImei",
+        desc = "(I)Ljava/lang/String;",
+        hookOwner = hookOwner,
+        hookDesc = "(Landroid/telephony/TelephonyManager;I)Ljava/lang/String;",
+    ),
+    MetaData(
+        owner = "android/telephony/TelephonyManager",
+        name = "getSimOperator",
+        desc = "()Ljava/lang/String;",
+        hookOwner = hookOwner,
+        hookDesc = "(Landroid/telephony/TelephonyManager;)Ljava/lang/String;",
+    ),
 )
 
 private class MetaData(

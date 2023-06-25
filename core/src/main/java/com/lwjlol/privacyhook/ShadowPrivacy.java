@@ -126,4 +126,18 @@ public class ShadowPrivacy {
         }
         return new PackageInfo();
     }
+
+    public static String getImei(TelephonyManager telephonyManager, int slotIndex) {
+        if (isAgree()) {
+            return telephonyManager.getImei(slotIndex);
+        }
+        return "";
+    }
+
+    public static String getSimOperator(TelephonyManager telephonyManager) {
+        if (isAgree()) {
+            return telephonyManager.getSimOperator();
+        }
+        return "";
+    }
 }
