@@ -1,6 +1,8 @@
 package com.lwjlol.privacyhook;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -140,4 +142,19 @@ public class ShadowPrivacy {
         }
         return "";
     }
+
+    public static boolean hasPrimaryClip(ClipboardManager clipboardManager) {
+        if (isAgree()) {
+            return clipboardManager.hasPrimaryClip();
+        }
+        return false;
+    }
+
+    public static ClipData getPrimaryClip(ClipboardManager clipboardManager) {
+        if (isAgree()) {
+            return clipboardManager.getPrimaryClip();
+        }
+        return null;
+    }
+
 }

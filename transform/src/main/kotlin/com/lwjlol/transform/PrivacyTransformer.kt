@@ -173,6 +173,20 @@ private val privacyMetaList = listOf(
         hookOwner = hookOwner,
         hookDesc = "(Landroid/telephony/TelephonyManager;)Ljava/lang/String;",
     ),
+    MetaData(
+        owner = "android/content/ClipboardManager",
+        name = "hasPrimaryClip",
+        desc = "()Z",
+        hookOwner = hookOwner,
+        hookDesc = "(Landroid/content/ClipboardManager;)Z"
+    ),
+    MetaData(
+        owner = "android/content/ClipboardManager",
+        name = "getPrimaryClip",
+        desc = "()Landroid/content/ClipData;",
+        hookOwner = hookOwner,
+        hookDesc = "(Landroid/content/ClipboardManager;)Landroid/content/ClipData;"
+    )
 )
 
 private class MetaData(
