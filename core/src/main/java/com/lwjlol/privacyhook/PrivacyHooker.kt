@@ -5,5 +5,5 @@ package com.lwjlol.privacyhook
  */
 object PrivacyHooker {
     @JvmStatic
-    var isUserAgreed: () -> Boolean = { true }
+    var isUserAgreed: () -> Boolean = { false }
 }

@@ -186,7 +186,43 @@ private val privacyMetaList = listOf(
         desc = "()Landroid/content/ClipData;",
         hookOwner = hookOwner,
         hookDesc = "(Landroid/content/ClipboardManager;)Landroid/content/ClipData;"
-    )
+    ),
+    MetaData(
+        owner = "android/content/pm/PackageManager",
+        name = "getInstalledPackages",
+        desc = "(I)Ljava/util/List",
+        hookOwner = hookOwner,
+        hookDesc = "(Landroid/content/pm/PackageManager;I)Ljava/util/List;",
+    ),
+    MetaData(
+        owner = "android/content/pm/PackageManager",
+        name = "getInstalledPackages",
+        desc = "(Landroid/content/pm/PackageManager\$PackageInfoFlags;)Ljava/util/List;",
+        hookOwner = hookOwner,
+        hookDesc = "(Landroid/content/pm/PackageManager;Landroid/content/pm/PackageManager\$PackageInfoFlags;)Ljava/util/List;",
+    ),
+    MetaData(
+        owner = "android/content/pm/PackageManager",
+        name = "getInstalledApplications",
+        desc = "(I)Ljava/util/List",
+        hookOwner = hookOwner,
+        hookDesc = "(Landroid/content/pm/PackageManager;I)Ljava/util/List;",
+    ),
+    MetaData(
+        owner = "android/content/pm/PackageManager",
+        name = "getInstalledApplications",
+        desc = "(Landroid/content/pm/PackageManager\$ApplicationInfoFlags;)Ljava/util/List;",
+        hookOwner = hookOwner,
+        hookDesc = "(Landroid/content/pm/PackageManager;Landroid/content/pm/PackageManager\$ApplicationInfoFlags;)Ljava/util/List;",
+    ),
+    MetaData(
+        owner = "android/content/pm/PackageManager",
+        name = "getInstalledModules",
+        desc = "(I)Ljava/util/List;",
+        hookOwner = hookOwner,
+        hookDesc = "(Landroid/content/pm/PackageManager;I)Ljava/util/List;",
+    ),
+
 )
 
 private class MetaData(

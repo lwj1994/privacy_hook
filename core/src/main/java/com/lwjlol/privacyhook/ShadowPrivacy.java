@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentResolver;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.ModuleInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
@@ -12,6 +14,8 @@ import android.telephony.TelephonyManager;
 
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressLint({"MissingPermission", "HardwareIds", "NewApi"})
 public class ShadowPrivacy {
@@ -155,6 +159,46 @@ public class ShadowPrivacy {
             return clipboardManager.getPrimaryClip();
         }
         return null;
+    }
+
+    @SuppressLint("QueryPermissionsNeeded")
+    public static List<PackageInfo> getInstalledPackages(PackageManager packageManager, int flags) {
+        if (isAgree()) {
+            return packageManager.getInstalledPackages(flags);
+        }
+        return new ArrayList<PackageInfo>();
+    }
+
+    @SuppressLint("QueryPermissionsNeeded")
+    public static List<PackageInfo> getInstalledPackages(PackageManager packageManager, PackageManager.PackageInfoFlags flags) {
+        if (isAgree()) {
+            return packageManager.getInstalledPackages(flags);
+        }
+        return new ArrayList<PackageInfo>();
+    }
+
+
+    @SuppressLint("QueryPermissionsNeeded")
+    public static List<ApplicationInfo> getInstalledApplications(PackageManager packageManager, int var1) {
+        if (isAgree()) {
+            return packageManager.getInstalledApplications(var1);
+        }
+        return new ArrayList<ApplicationInfo>();
+    }
+
+    @SuppressLint("QueryPermissionsNeeded")
+    public static List<ApplicationInfo> getInstalledApplications(PackageManager packageManager, PackageManager.ApplicationInfoFlags var1) {
+        if (isAgree()) {
+            return packageManager.getInstalledApplications(var1);
+        }
+        return new ArrayList<ApplicationInfo>();
+    }
+
+    public static List<ModuleInfo> getInstalledModules(PackageManager packageManager, int flags) {
+        if (isAgree()) {
+            return packageManager.getInstalledModules(flags);
+        }
+        return new ArrayList<ModuleInfo>();
     }
 
 }
