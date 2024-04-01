@@ -190,7 +190,7 @@ private val privacyMetaList = listOf(
     MetaData(
         owner = "android/content/pm/PackageManager",
         name = "getInstalledPackages",
-        desc = "(I)Ljava/util/List",
+        desc = "(I)Ljava/util/List;",
         hookOwner = hookOwner,
         hookDesc = "(Landroid/content/pm/PackageManager;I)Ljava/util/List;",
     ),
@@ -204,7 +204,7 @@ private val privacyMetaList = listOf(
     MetaData(
         owner = "android/content/pm/PackageManager",
         name = "getInstalledApplications",
-        desc = "(I)Ljava/util/List",
+        desc = "(I)Ljava/util/List;",
         hookOwner = hookOwner,
         hookDesc = "(Landroid/content/pm/PackageManager;I)Ljava/util/List;",
     ),

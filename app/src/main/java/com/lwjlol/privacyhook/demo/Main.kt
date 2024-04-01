@@ -21,11 +21,12 @@ class Main : AppCompatActivity() {
         PrivacyHooker.isUserAgreed = {
             agree
         }
+        // test hook
         val r = packageManager.getInstalledPackages(2);
         val  r2 = packageManager.getInstalledApplications(1);
-//        packageManager.getInstalledModules(3);
-//        packageManager.getInstalledPackages(PackageManager.PackageInfoFlags.of(1));
-//        packageManager.getInstalledApplications(PackageManager.ApplicationInfoFlags.of(1));
+        packageManager.getInstalledModules(3);
+        packageManager.getInstalledPackages(PackageManager.PackageInfoFlags.of(1));
+        packageManager.getInstalledApplications(PackageManager.ApplicationInfoFlags.of(1));
 
         val dialog = AlertDialog.Builder(this)
             .setPositiveButton(
