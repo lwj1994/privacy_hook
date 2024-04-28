@@ -9,6 +9,7 @@ import android.content.pm.ModuleInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
+import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
@@ -52,6 +53,13 @@ public class ShadowPrivacy {
     public static String getSimSerialNumber(TelephonyManager telephonyManager) {
         if (isAgree()) {
             return telephonyManager.getSimSerialNumber();
+        }
+        return "";
+    }
+
+    public static String getBuildSerial() {
+        if (isAgree()) {
+            return Build.getSerial();
         }
         return "";
     }

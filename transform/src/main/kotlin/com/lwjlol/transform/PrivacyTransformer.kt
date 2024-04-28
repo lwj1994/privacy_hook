@@ -44,8 +44,11 @@ class PrivacyTransformer : ClassTransformer {
                                 name == meta.name &&
                                 desc == meta.desc
                             ) {
-                                logger.println("hook ${klass.name} ${method.name} ${method.desc} \n--> $owner $name $desc")
+                                val hookName = meta.hookName.ifEmpty { name };
+                                logger.println("hook $owner.$name $desc -> ${meta.hookOwner}.${hookName} $desc in ${klass.name} ${method.name} ${method.desc}")
+
                                 insnNode.owner = meta.hookOwner
+                                insnNode.name = hookName
                                 insnNode.opcode = INVOKESTATIC
                                 insnNode.desc = meta.hookDesc
                             }
@@ -56,6 +59,14 @@ class PrivacyTransformer : ClassTransformer {
         }
 
         return klass
+    }
+
+    fun isSuperActivity(klass: ClassNode) {
+
+    }
+
+    fun isContext(owner: String) {
+        return
     }
 
     companion object {
@@ -223,12 +234,22 @@ private val privacyMetaList = listOf(
         hookDesc = "(Landroid/content/pm/PackageManager;I)Ljava/util/List;",
     ),
 
-)
+    MetaData(
+        owner = "android/os/Build",
+        name = "getSerial",
+        desc = "()Ljava/lang/String;",
+        hookOwner = hookOwner,
+        hookName = "getBuildSerial",
+        hookDesc = "()Ljava/lang/String;",
+    ),
+
+    )
 
 private class MetaData(
     val owner: String,
     val name: String,
     val desc: String,
     val hookOwner: String,
+    val hookName: String = "",
     val hookDesc: String,
 )
