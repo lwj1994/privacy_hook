@@ -1,12 +1,14 @@
 package com.lwjlol.privacyhook.demo
 
 import android.content.BroadcastReceiver
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -32,6 +34,8 @@ class Main : AppCompatActivity() {
         packageManager.getInstalledModules(3);
         packageManager.getInstalledPackages(PackageManager.PackageInfoFlags.of(1));
         packageManager.getInstalledApplications(PackageManager.ApplicationInfoFlags.of(1));
+
+        testSensor();
         val s = Build.getSerial();
         val dialog = AlertDialog.Builder(this)
             .setPositiveButton(
@@ -53,6 +57,13 @@ class Main : AppCompatActivity() {
 
     companion object {
         private const val TAG = "Main"
+    }
+
+
+    fun  testSensor(){
+        val  clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager;
+        val  a = clipboardManager.primaryClipDescription
+        println(a)
     }
 }
 

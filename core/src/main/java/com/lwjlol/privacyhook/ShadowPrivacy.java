@@ -2,6 +2,7 @@ package com.lwjlol.privacyhook;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.pm.ApplicationInfo;
@@ -21,6 +22,7 @@ import java.util.List;
 @SuppressLint({"MissingPermission", "HardwareIds", "NewApi"})
 public class ShadowPrivacy {
     private static final String TAG = "KurilPrivacyChecker";
+    private static long getPrimaryClipDescription_time = 0;
 
     private static boolean isAgree() {
         Boolean agree;
@@ -55,6 +57,17 @@ public class ShadowPrivacy {
             return telephonyManager.getSimSerialNumber();
         }
         return "";
+    }
+
+    public static ClipDescription getPrimaryClipDescription(ClipboardManager clipboardManager) {
+        if (isAgree()) {
+            if (System.currentTimeMillis() - getPrimaryClipDescription_time > 5000) {
+                return null;
+            }
+            getPrimaryClipDescription_time = System.currentTimeMillis();
+            clipboardManager.getPrimaryClipDescription();
+        }
+        return null;
     }
 
     public static String getBuildSerial() {

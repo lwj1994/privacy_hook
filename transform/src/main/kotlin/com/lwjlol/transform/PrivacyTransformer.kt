@@ -199,6 +199,13 @@ private val privacyMetaList = listOf(
         hookDesc = "(Landroid/content/ClipboardManager;)Landroid/content/ClipData;"
     ),
     MetaData(
+        owner = "android/content/ClipboardManager",
+        name = "getPrimaryClipDescription",
+        desc = "()Landroid/content/ClipDescription;",
+        hookOwner = hookOwner,
+        hookDesc = "(Landroid/content/ClipboardManager;)Landroid/content/ClipDescription;"
+    ),
+    MetaData(
         owner = "android/content/pm/PackageManager",
         name = "getInstalledPackages",
         desc = "(I)Ljava/util/List;",
@@ -232,6 +239,15 @@ private val privacyMetaList = listOf(
         desc = "(I)Ljava/util/List;",
         hookOwner = hookOwner,
         hookDesc = "(Landroid/content/pm/PackageManager;I)Ljava/util/List;",
+    ),
+
+    MetaData(
+        owner = "android/os/Build",
+        name = "getSerial",
+        desc = "()Ljava/lang/String;",
+        hookOwner = hookOwner,
+        hookName = "getBuildSerial",
+        hookDesc = "()Ljava/lang/String;",
     ),
 
     MetaData(

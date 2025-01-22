@@ -1,5 +1,8 @@
 package com.lwjlol.privacyhook.demo
 
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +15,20 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        runBlocking {
+            launch {
+                println("launch on ${System.currentTimeMillis()}")
+                delay(5000)
+                println("launch end on ${System.currentTimeMillis()}")
+
+            }
+            launch {
+                println("launch1 on ${System.currentTimeMillis()}")
+                delay(5000)
+                println("launch1 end on ${System.currentTimeMillis()}")
+
+            }
+        }
+        println("2")
     }
 }
