@@ -61,7 +61,7 @@ public class ShadowPrivacy {
 
     public static ClipDescription getPrimaryClipDescription(ClipboardManager clipboardManager) {
         if (isAgree()) {
-            if (System.currentTimeMillis() - getPrimaryClipDescription_time > 5000) {
+            if (System.currentTimeMillis() - getPrimaryClipDescription_time < 5000) {
                 return null;
             }
             getPrimaryClipDescription_time = System.currentTimeMillis();
