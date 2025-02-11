@@ -14,6 +14,8 @@ import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
+import androidx.annotation.Nullable;
+
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
@@ -22,7 +24,10 @@ import java.util.List;
 @SuppressLint({"MissingPermission", "HardwareIds", "NewApi"})
 public class ShadowPrivacy {
     private static final String TAG = "KurilPrivacyChecker";
-    private static long getPrimaryClipDescription_time = 0;
+    private static long getPrimaryClipDescriptionTime = 0;
+    @Nullable
+    private static ClipDescription clipDescriptionCache;
+
 
     private static boolean isAgree() {
         Boolean agree;
@@ -61,11 +66,12 @@ public class ShadowPrivacy {
 
     public static ClipDescription getPrimaryClipDescription(ClipboardManager clipboardManager) {
         if (isAgree()) {
-            if (System.currentTimeMillis() - getPrimaryClipDescription_time < 5000) {
-                return null;
+            if (System.currentTimeMillis() - getPrimaryClipDescriptionTime < 5000) {
+                return clipDescriptionCache;
             }
-            getPrimaryClipDescription_time = System.currentTimeMillis();
-            clipboardManager.getPrimaryClipDescription();
+            getPrimaryClipDescriptionTime = System.currentTimeMillis();
+            clipDescriptionCache = clipboardManager.getPrimaryClipDescription();
+            return clipDescriptionCache;
         }
         return null;
     }
