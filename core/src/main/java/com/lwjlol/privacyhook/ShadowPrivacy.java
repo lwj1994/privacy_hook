@@ -25,8 +25,8 @@ import java.util.List;
 public class ShadowPrivacy {
     private static final String TAG = "KurilPrivacyChecker";
     private static long getPrimaryClipDescriptionTime = 0;
+
     @Nullable
-    private static ClipDescription clipDescriptionCache;
 
 
     private static boolean isAgree() {
@@ -67,11 +67,10 @@ public class ShadowPrivacy {
     public static ClipDescription getPrimaryClipDescription(ClipboardManager clipboardManager) {
         if (isAgree()) {
             if (System.currentTimeMillis() - getPrimaryClipDescriptionTime < 5000) {
-                return clipDescriptionCache;
+                return null;
             }
             getPrimaryClipDescriptionTime = System.currentTimeMillis();
-            clipDescriptionCache = clipboardManager.getPrimaryClipDescription();
-            return clipDescriptionCache;
+            return clipboardManager.getPrimaryClipDescription();
         }
         return null;
     }
