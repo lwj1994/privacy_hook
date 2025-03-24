@@ -75,7 +75,14 @@ public class ShadowPrivacy {
     }
 
     public static String getBuildSerial() {
-        if (isAgree()) {
+        //1)APP内明示SDK处理个人信息的目的、方式和范围，但是明示不清晰（明示不全），用户
+        //同意后，SDK就开始收集个人信息
+        //2025-03-24 14:26:31.743 -> [测试动作] 同意隐私政策
+        //2025-03-24 14:26:32.030 -> (SDK: 荣耀推送) 读取设备序列号
+        //at android.os.Build.getSerial()
+        //at com.hihonor.push.sdk.b$$ExternalSyntheticApiModelOutline0.m(Unknown Source:0)
+        //at com.lwjlol.privacyhook.ShadowPrivacy.getBuildSerial(ShadowPrivacy.java:79)
+        if (isAgree() && PrivacyHooker.isAppStoreReviewed().invoke()) {
             return Build.getSerial();
         }
         return "";
